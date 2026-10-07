@@ -25,11 +25,10 @@ fn hottest_day(log: &Vec<Reading>) -> usize {
     }
     best
 }
-
-fn count_above(log: &Vec<i32>, threshold: i32) -> usize {
+fn count_above(log: &Vec<Reading>, threshold: i32) -> usize {
     let mut count = 0;
-    for &temp in log {
-        if temp > threshold {
+    for reading in log {
+        if reading.high > threshold {
             count += 1;
         }
     }
