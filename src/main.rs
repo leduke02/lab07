@@ -44,6 +44,13 @@ struct Summary {
     hottest_day: String,
     days_above: usize,
 }
+fn summarize(log: &Vec<Reading>, threshold: i32) -> Summary {
+    Summary {
+        average: average_temp(log),
+        hottest_day: log[hottest_day(log)].day.clone(),
+        days_above: count_above(log, threshold),
+    }
+}
 fn main() {
     let mut highs: Vec<i32> = vec![72, 68, 75, 81, 79];
 
