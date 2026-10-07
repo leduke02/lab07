@@ -6,22 +6,20 @@ fn print_log(log: &Vec<Reading>) {
         println!("{}: {}", reading.day, reading.high);
     }
 }
-
-fn average_temp(log: &Vec<i32>) -> f64 {
+fn average_temp(log: &Vec<Reading>) -> f64 {
     if log.is_empty() {
         return 0.0;
     }
     let mut sum = 0;
-    for temp in log {
-        sum += temp;
+    for reading in log {
+        sum += reading.high;
     }
     sum as f64 / log.len() as f64
 }
-
-fn hottest_day(log: &Vec<i32>) -> usize {
+fn hottest_day(log: &Vec<Reading>) -> usize {
     let mut best = 0;
     for i in 1..log.len() {
-        if log[i] > log[best] {
+        if log[i].high > log[best].high {
             best = i;
         }
     }
