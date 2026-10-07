@@ -52,6 +52,7 @@ fn summarize(log: &Vec<Reading>, threshold: i32) -> Summary {
         days_above: count_above(log, threshold),
     }
 }
+// Builds the log from DAYS and readings, then prints the summary
 fn main() {
     // Step 1
     let mut log: Vec<Reading> = Vec::new();
