@@ -52,23 +52,29 @@ fn summarize(log: &Vec<Reading>, threshold: i32) -> Summary {
     }
 }
 fn main() {
-    let mut highs: Vec<i32> = vec![72, 68, 75, 81, 79];
-
     // Step 1
+    let mut log: Vec<Reading> = Vec::new();
+    for (i, &high) in [72, 68, 75, 81, 79].iter().enumerate() {
+        log.push(Reading { day: DAYS[i].to_string(), high });
+    }
     println!("Initial readings:");
-    print_log(&highs);
+    print_log(&log);
 
     // Step 2
     let mut rng = rand::rng();
     for _ in 0..2 {
-        highs.push(rng.random_range(60..=100));
+        log.push(Reading {
+            day: DAYS[log.len()].to_string(),
+            high: rng.random_range(60..=100),
+        });
     }
     println!("\nAfter adding two more days:");
-    print_log(&highs);
+    print_log(&log);
 
     // Step 6
-    println!("\nAverage: {:.1}", average_temp(&highs));
-    println!("Hottest day: {}", DAYS[hottest_day(&highs)]);
-    println!("Days above 75: {}", count_above(&highs, 75));
+    let s = summarize(&log, 75);
+    println!("\nAverage: {:.1}", s.average);
+    println!("Hottest day: {}", s.hottest_day);
+    println!("Days above 75: {}", s.days_above);
 }
 
