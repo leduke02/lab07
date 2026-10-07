@@ -1,9 +1,9 @@
 use rand::RngExt;
 const DAYS: [&str; 7] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-fn print_log(log: &Vec<i32>) {
-    for (i, temp) in log.iter().enumerate() {
-        println!("{}: {}", DAYS[i], temp);
+fn print_log(log: &Vec<Reading>) {
+    for reading in log {
+        println!("{}: {}", reading.day, reading.high);
     }
 }
 
@@ -37,7 +37,16 @@ fn count_above(log: &Vec<i32>, threshold: i32) -> usize {
     }
     count
 }
+struct Reading {
+    day: String,
+    high: i32,
+}
 
+struct Summary {
+    average: f64,
+    hottest_day: String,
+    days_above: usize,
+}
 fn main() {
     let mut highs: Vec<i32> = vec![72, 68, 75, 81, 79];
 
