@@ -44,6 +44,7 @@ struct Summary {
     hottest_day: String,
     days_above: usize,
 }
+// Builds a Summary from the log using the three helper functions
 fn summarize(log: &Vec<Reading>, threshold: i32) -> Summary {
     Summary {
         average: average_temp(log),
